@@ -11,11 +11,21 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Schrijf de stapjes om dit te kunnen checken eerst uit en vraag jezelf de volgende dingen af:
 // * Hoe kan ik iedere waarde van de array checken op deze conditie?
 // * Hoe zorg ik ervoor dat dit ook werkt wanneer de array 100 entries bevat?
-// * Hoe zorgt ik ervoor dat wanneer ik een cijfer tegenkom die aan de conditie voldoet, ik dit ergens kan bijhouden?
+// * Hoe zorg ik ervoor dat wanneer ik een cijfer tegenkom die aan de conditie voldoet, ik dit ergens kan bijhouden?
 // Log het antwoord in de terminal.
 
 // ---- Verwachte uitkomst: 6
 
+//      een for-loop om door de volledige lengte van de array te itereren
+for(let i = 0; i < grades.length; i++) {
+//      een cijfer-check op cum laude
+    if(grades[i] >= 8) {
+//      een print van de cijfer-resultaten in de console
+        console.log(`Grade ${i + 1}: Cum Laude`);
+    } else {
+        console.log(`Grade ${i + 1}: Regular diploma`);
+    }
+}
 
 /*  1b: Omschrijven tot een herbruikbare functie   */
 // Schrijf een functie genaamd cumLaude, die een array van cijfers verwacht (zoals grades) en het aantal Cum laude studenten teruggeeft. Gebruik hiervoor jouw antwoord van 1a.
@@ -27,8 +37,18 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // cumLaude([6, 4, 5]) geeft 0
 // cumLaude([8, 9, 4, 6, 10]) geeft 3
 
+let count = 0;
 
-
+function cumLaude(array) {
+    for(let i = 0; i < array.length; i++) {
+        if(array[i] >= 8) {
+            count += 1;
+        }
+    }
+}
+// het is me niet gelukt om de parameter te formuleren voor zowel de array-variabele als een gegeven array zelf (zoals [6, 4, 5])
+cumLaude([6, 4, 5]);
+console.log(count);
 
 /* Opdracht  2: Gemiddeld cijfer */
 
@@ -42,6 +62,18 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 
 // ---- Verwachte uitkomst: 6.642857142857143
 
+// definieer een optel-variabele in de global scope
+let count2 = 0;
+
+// itereer door de array
+for(let i = 0; i < grades.length; i++) {
+    // tel alle waardes in de array bij elkaar op
+    count2 = grades[i] + count2;
+}
+//  berekening van het gemiddelde
+const mean = count2 / grades.length;
+
+console.log(mean);
 
 /* 2b: Omschrijven tot een herbruikbare functie */
 // Schrijf een functie genaamd averageGrade, die een array van cijfers verwacht (zoals grades) en het gemiddelde cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 2a.
@@ -54,11 +86,24 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // averageGrade([8, 9, 4, 6, 10]) geeft 7.4
 
 
+
+function averageGrade(array) {
+    let count2b = 0;
+    for(let i = 0; i < array.length; i++) {
+        count2b = array[i] + count2b;
+    }
+    const mean = count2b / array.length;
+    return mean;
+}
+// zelfde als bij 1b; het is me niet gelukt om de parameter te formuleren voor zowel de array-variabele als een gegeven array zelf (zoals [6, 4, 5])
+console.log(averageGrade(grades));
+
+
 /* 2c: Afronden op twee decimalen */
 // Zorg ervoor dat het gemiddelde cijfer dat wordt teruggegeven uit de functie netjes wordt afgerond op twee decimalen.
 // Tip: Google is your best friend!
 
-
+console.log(averageGrade(grades).toFixed(2));
 
 
 /* Bonusopdracht: hoogste cijfer */
@@ -72,6 +117,15 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 
 // ---- Verwachte uitkomst: 9
 
+let highest = 0;
+
+for(let i = 0; i < grades.length; i++) {
+    if(grades[i] > highest) {
+        highest = grades[i];
+    }
+}
+
+console.log(highest);
 
 /* 3b: Omschrijven tot een herbruikbare functie */
 // Schrijf een functie genaamd highestGrade, die een array van cijfers verwacht (zoals grades) en het hoogste cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 3a.
@@ -82,3 +136,18 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // highestGrade(grades) geeft 9
 // highestGrade([6, 4, 5]) geeft 6
 // highestGrade([8, 9, 4, 6, 10]) geeft 10
+
+function highestGrade(array) {
+    let highest2 = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > highest2) {
+            highest2 = array[i];
+        }
+        return highest2;
+    }
+}
+
+console.log(highestGrade(grades));
+// wederom, ik hoop te leren hoe ik zowel de variabele als de gegeven array kan gebruiken als parameter
+
+
